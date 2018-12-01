@@ -1,0 +1,17 @@
+{
+  "env": {
+    "jest/globals": true
+  },
+  "plugins": [
+    "jest"
+  ],
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:jest/recommended",
+    "standard"
+  ],
+  "rules": {
+    "no-console": ["error"],
+    "space-before-function-paren": ["error", "never"]
+  }
+}
