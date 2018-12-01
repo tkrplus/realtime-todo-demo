@@ -4,13 +4,18 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.6.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "immutable": "^4.0.0-rc.12",
+    "moment-timezone": "^0.5.23",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "redux": "^4.0.1",
-    "styled-components": "^4.1.2"
+    "styled-components": "^4.1.2",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "start": "webpack-dev-server",
@@ -23,7 +28,6 @@
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
-    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "clean-webpack-plugin": "^1.0.0",
     "eslint": "^5.9.0",
