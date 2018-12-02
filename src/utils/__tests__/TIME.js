@@ -17,4 +17,9 @@ describe('TIME', () => {
     const time = moment('2018-12-01 16:02:30', 'YYYY-MM-DD HH:mm:ss')
     expect(TIME.toUnix(time)).toEqual(1543647750)
   })
+
+  test('display', () => {
+    const time = moment('2018-12-01 16:02:30', 'YYYY-MM-DD HH:mm:ss')
+    expect(TIME.display(time)).toEqual('2018-12-01 16:02')
+  })
 })

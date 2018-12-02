@@ -11,7 +11,8 @@
     "standard"
   ],
   "rules": {
-    "no-console": ["error"],
-    "space-before-function-paren": ["error", "never"]
+    "no-console": "error",
+    "space-before-function-paren": "off",
+    "react/prop-types": "off"
   }
 }
