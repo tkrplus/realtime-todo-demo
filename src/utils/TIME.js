@@ -14,8 +14,13 @@ export const toUnix = (time) => {
   return time.unix()
 }
 
+export const display = (time) => {
+  return time.format('YYYY-MM-DD HH:mm')
+}
+
 export default {
   now,
   fromUnix,
-  toUnix
+  toUnix,
+  display
 }
