@@ -44,6 +44,17 @@ class TicketStatus extends TicketStatusRecord {
     return status
   }
 
+  static getNextStatus(status) {
+    switch (status.code) {
+      case this.OPEN.code:
+        return this.IN_PROGRESS
+      case this.IN_PROGRESS.code:
+        return this.CLOSE
+      case this.CLOSE.code:
+        return null
+    }
+  }
+
   equals(status) {
     return this.code === status.code
   }

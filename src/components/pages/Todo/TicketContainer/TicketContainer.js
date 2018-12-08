@@ -6,6 +6,7 @@ import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 
 import TicketList from './TicketList'
+import TicketStatus from '~/src/models/ticket/TicketStatus'
 
 const TicketContainer = (props) => {
   return (
@@ -26,13 +27,13 @@ const TicketContainer = (props) => {
         </AppBar>
       </Grid>
       <Grid item xs={4}>
-        <TicketList />
+        <TicketList status={TicketStatus.OPEN}/>
       </Grid>
       <Grid item xs={4}>
-        <TicketList />
+        <TicketList status={TicketStatus.IN_PROGRESS}/>
       </Grid>
       <Grid item xs={4}>
-        <TicketList />
+        <TicketList status={TicketStatus.CLOSE}/>
       </Grid>
 
     </Grid>

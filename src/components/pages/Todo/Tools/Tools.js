@@ -15,6 +15,8 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 
+import Category from '~/src/models/category/Category'
+
 const styles = theme => ({
   addButton: {
     margin: theme.spacing.unit
@@ -31,14 +33,10 @@ const styles = theme => ({
 
 const Tools = (props) => {
   const {
-    classes
+    classes,
+    openTicketCreateDialog
   } = props
 
-  const categories = [
-    'work',
-    'home',
-    'school'
-  ]
   return (
     <Wrapper>
       <Grid container>
@@ -58,10 +56,10 @@ const Tools = (props) => {
               displayEmpty
               value={[]}
             >
-              {categories.map(category => (
-                <MenuItem key={category} value={category}>
-                  <Checkbox checked={categories.indexOf(category) > -1} />
-                  <ListItemText primary={category} />
+              {Category.CATEGORY_LIST.map(category => (
+                <MenuItem key={category.code} value={category.code}>
+                  <Checkbox checked={false} />
+                  <ListItemText primary={category.name} />
                 </MenuItem>
               ))}
             </Select>
@@ -72,6 +70,7 @@ const Tools = (props) => {
             variant="fab"
             color="secondary"
             aria-label="Add"
+            onClick={openTicketCreateDialog}
             className={classes.addButton} >
             <AddIcon />
           </Button>
