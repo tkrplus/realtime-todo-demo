@@ -17,17 +17,20 @@ const styles = theme => ({
 const TicketCard = (props) => {
   const {
     classes,
-    ticket
+    ticket,
+    changeToNextStatus
   } = props
   return (
     <Card className={classes.card}>
-      <CardActionArea>
+      <CardActionArea
+        onClick={changeToNextStatus}
+      >
         <CardContent>
           <Typography variant="h5" component="h2">
             { ticket.summary }
           </Typography>
           <Typography color="textSecondary">
-            { ticket.category }
+            { ticket.category && ticket.category.name }
           </Typography>
           <Typography color="textSecondary">
             { TIME.display(ticket.deadline) }

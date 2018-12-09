@@ -15,6 +15,8 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 
+import Category from '~/src/models/category/Category'
+
 const styles = theme => ({
   addButton: {
     margin: theme.spacing.unit
@@ -31,37 +33,59 @@ const styles = theme => ({
 
 const Tools = (props) => {
   const {
-    classes
+    classes,
+    openTicketCreateDialog,
+    searchText,
+    searchCategories,
+    editSearchText,
+    editSearchCategories
   } = props
 
-  const categories = [
-    'work',
-    'home',
-    'school'
-  ]
+  const handleSearchTextChange = (e) => {
+    editSearchText(e.target.value)
+  }
+
+  const handleSearchCateoriesChange = (e) => {
+    const values = e.target.value
+    const categories = values
+      .map(val => Category.codeOf(val))
+      .filter(category => !!category)
+    editSearchCategories(categories)
+  }
+
   return (
     <Wrapper>
       <Grid container>
         <Grid item xs={10}>
           <TextField
             label='Search'
+            onChange={handleSearchTextChange}
+            value={searchText}
             className={classes.SearchField}
           />
           <FormControl
             className={classes.CategoryForm}
           >
             <InputLabel htmlFor="select-multiple-chip">
-          Categories
+              Categories
             </InputLabel>
             <Select
               multiple
               displayEmpty
-              value={[]}
+              onChange={handleSearchCateoriesChange}
+              value={searchCategories.map(category => category.code)}
+              renderValue={codes => {
+                return codes
+                  .map(code => Category.codeOf(code))
+                  .filter(category => !!category)
+                  .map(category => category.name)
+                  .join(',')
+              }}
             >
-              {categories.map(category => (
-                <MenuItem key={category} value={category}>
-                  <Checkbox checked={categories.indexOf(category) > -1} />
-                  <ListItemText primary={category} />
+              {Category.CATEGORY_LIST.map(category => (
+                <MenuItem key={category.code} value={category.code} >
+                  <Checkbox checked={searchCategories.some(c => c.code === category.code)} />
+                  <ListItemText primary={category.name} />
                 </MenuItem>
               ))}
             </Select>
@@ -72,6 +96,7 @@ const Tools = (props) => {
             variant="fab"
             color="secondary"
             aria-label="Add"
+            onClick={openTicketCreateDialog}
             className={classes.addButton} >
             <AddIcon />
           </Button>
