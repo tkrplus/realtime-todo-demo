@@ -1,4 +1,4 @@
-import React from 'React'
+import React from 'react'
 import LinearProgress from '@material-ui/core/LinearProgress'
 
 const Progress = (props) => {
