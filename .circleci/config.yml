@@ -50,6 +50,9 @@ jobs:
       - run:
           name: 'Building'
           command: npm run build
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
 
   deploy:
     <<: *defaults
