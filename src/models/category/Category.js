@@ -60,8 +60,11 @@ class Category extends CategoryRecord {
     return status
   }
 
-  equals(status) {
-    return this.code === status.code
+  equals(category) {
+    if (!category) {
+      return false
+    }
+    return this.code === category.code
   }
 }
 

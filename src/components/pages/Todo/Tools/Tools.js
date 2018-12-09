@@ -34,8 +34,24 @@ const styles = theme => ({
 const Tools = (props) => {
   const {
     classes,
-    openTicketCreateDialog
+    openTicketCreateDialog,
+    searchText,
+    searchCategories,
+    editSearchText,
+    editSearchCategories
   } = props
+
+  const handleSearchTextChange = (e) => {
+    editSearchText(e.target.value)
+  }
+
+  const handleSearchCateoriesChange = (e) => {
+    const values = e.target.value
+    const categories = values
+      .map(val => Category.codeOf(val))
+      .filter(category => !!category)
+    editSearchCategories(categories)
+  }
 
   return (
     <Wrapper>
@@ -43,22 +59,32 @@ const Tools = (props) => {
         <Grid item xs={10}>
           <TextField
             label='Search'
+            onChange={handleSearchTextChange}
+            value={searchText}
             className={classes.SearchField}
           />
           <FormControl
             className={classes.CategoryForm}
           >
             <InputLabel htmlFor="select-multiple-chip">
-          Categories
+              Categories
             </InputLabel>
             <Select
               multiple
               displayEmpty
-              value={[]}
+              onChange={handleSearchCateoriesChange}
+              value={searchCategories.map(category => category.code)}
+              renderValue={codes => {
+                return codes
+                  .map(code => Category.codeOf(code))
+                  .filter(category => !!category)
+                  .map(category => category.name)
+                  .join(',')
+              }}
             >
               {Category.CATEGORY_LIST.map(category => (
-                <MenuItem key={category.code} value={category.code}>
-                  <Checkbox checked={false} />
+                <MenuItem key={category.code} value={category.code} >
+                  <Checkbox checked={searchCategories.some(c => c.code === category.code)} />
                   <ListItemText primary={category.name} />
                 </MenuItem>
               ))}
